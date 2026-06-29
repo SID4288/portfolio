@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddhanta Adhikari | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="bg-grid"></div>
+    <div class="ambient-glow glow-left"></div>
+    <div class="ambient-glow glow-right"></div>
+    <div id="mouse-glow"></div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#" class="brand">/sid/<span>log</span></a>
+            
+            <nav class="nav-links">
+                <a href="#projects">projects</a>
+                <a href="#research">research</a>
+                <a href="#spotlight">spotlight</a>
+                <a href="#connect">connect</a>
+            </nav>
+
+            <div class="nav-right">
+                <div class="theme-switcher-box">
+                    <button class="theme-btn active" data-mode="dark" title="Dark Mode"><i class="fa-solid fa-moon"></i></button>
+                    <button class="theme-btn" data-mode="light" title="Light Mode"><i class="fa-solid fa-sun"></i></button>
+                    <button class="theme-btn" data-mode="cyber" title="Cyberpunk Mode"><i class="fa-solid fa-bolt"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="mac-app-container">
+            <div class="mac-titlebar">
+                <div class="mac-circles">
+                    <div class="mac-circle circle-red"></div>
+                    <div class="mac-circle circle-yellow"></div>
+                    <div class="mac-circle circle-green"></div>
+                </div>
+                <div class="mac-title">bash — sid@ku: ~/portfolio</div>
+            </div>
+
+            <div class="mac-body">
+                <div class="cli-prompt">
+                    <span class="cli-symbol">$</span>
+                    <span id="typewriter-txt"></span><span class="typewriter-cursor">█</span>
+                </div>
+
+                <div class="hero-title-group">
+                    <div class="pixel-name">Siddhanta Adhikari</div>
+                    <h1 class="serif-headline">Notes from a programmer's desk — on code, systems, and the strange joy of debugging at 2am.</h1>
+                </div>
+
+                <p class="hero-bio">
+                    Final-year <strong>Computer Engineering student</strong> at Kathmandu University, building high-throughput machine learning pipelines, robust computer vision setups, and secure software backends. Currently dedicating compute arrays to automated SAR-based geospatial flood mitigation research.
+                </p>
+
+                <div class="btn-wrapper">
+                    <a href="#projects" class="portfolio-btn btn-filled">Explore Work &rarr;</a>
+                    <a href="#connect" class="portfolio-btn btn-outlined"><i class="fa-solid fa-terminal"></i> Ping Server</a>
+                    <a href="Siddhanta_Adhikari_CV.pdf" download class="portfolio-btn btn-outlined"><i class="fa-solid fa-download"></i> Download CV</a>
+                </div>
+
+                <div class="metrics-grid terminal-enhanced-metrics">
+                    <div class="metric-item">
+                        <span class="metric-value status-online">ONLINE</span>
+                        <span class="metric-label"><i class="fa-solid fa-circle-nodes"></i> System Status</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value status-passing">PASSING</span>
+                        <span class="metric-label"><i class="fa-solid fa-code-commit"></i> CI/CD Pipeline</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value structural-pulse">99.9%</span>
+                        <span class="metric-label"><i class="fa-solid fa-server"></i> Engine Uptime</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value latency-jitter">&lt; 18ms</span>
+                        <span class="metric-label"><i class="fa-solid fa-bolt"></i> Response Latency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <div class="marquee-item">Python <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">PyTorch <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">TensorFlow <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">OpenCV <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Django <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">React <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">PostgreSQL <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Docker <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Google Earth Engine <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Git <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">C++ <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Python <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">PyTorch <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">TensorFlow <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">OpenCV <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Django <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">React <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">PostgreSQL <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Docker <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Google Earth Engine <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">Git <i class="fa-solid fa-circle"></i></div>
+            <div class="marquee-item">C++ <i class="fa-solid fa-circle"></i></div>
+        </div>
+    </div>
+
+    <section id="projects" class="content-section reveal">
+        <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="projects-grid">
+            <a href="https://github.com/SID4288" target="_blank" class="repo-card">
+                <div class="repo-watermark">01</div>
+                <div class="repo-header">
+                    <h3>Aquila</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">SAR Flood Detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.</p>
+                <div class="repo-tags">
+                    <span>Python</span><span>Earth Engine</span><span>PyTorch</span>
+                </div>
+            </a>
+            <a href="https://github.com/SID4288" target="_blank" class="repo-card">
+                <div class="repo-watermark">02</div>
+                <div class="repo-header">
+                    <h3>SFaceX</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.</p>
+                <div class="repo-tags">
+                    <span>OpenCV</span><span>TensorFlow</span><span>C++</span>
+                </div>
+            </a>
+            <a href="https://github.com/DikshitBhatta/StyleMe" target="_blank" class="repo-card">
+                <div class="repo-watermark">03</div>
+                <div class="repo-header">
+                    <h3>StyleMe</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.</p>
+                <div class="repo-tags">
+                    <span>MediaPipe</span><span>Python</span><span>React</span>
+                </div>
+            </a>
+            <a href="https://github.com/DikshitBhatta/CookeryKaa-Project" target="_blank" class="repo-card">
+                <div class="repo-watermark">04</div>
+                <div class="repo-header">
+                    <h3>CookeryKaa</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Full-stack culinary curation application serving highly optimized parameter matching algorithms across large recipe schemas.</p>
+                <div class="repo-tags">
+                    <span>Django</span><span>PostgreSQL</span><span>JS</span>
+                </div>
+            </a>
+            <a href="https://github.com/SID4288/Cadence" target="_blank" class="repo-card">
+                <div class="repo-watermark">05</div>
+                <div class="repo-header">
+                    <h3>Cadence</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Developer operations metrics console tracking performance patterns, live container logs, and repository speeds.</p>
+                <div class="repo-tags">
+                    <span>Jupyter</span><span>Deep Learning</span><span>Data Curation</span>
+                </div>
+            </a>
+            <a href="https://github.com/SID4288/zero-trust-agent-sandbox" target="_blank" class="repo-card">
+                <div class="repo-watermark">06</div>
+                <div class="repo-header">
+                    <h3>Zero Trust Sandbox</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Isolated runtime micro-kernel cluster built to observe, profile, and isolate arbitrary script executions safely.</p>
+                <div class="repo-tags">
+                    <span>Python</span><span>Docker</span><span>Linux Systems</span>
+                </div>
+            </a>
+            <a href="https://github.com/BipulLamsal/Aanubadh" target="_blank" class="repo-card">
+                <div class="repo-watermark">07</div>
+                <div class="repo-header">
+                    <h3>Aanubadh</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Translation tool built for KU Information and Language Processing Research Lab Hackathon.</p>
+                <div class="repo-tags">
+                    <span>JavaScript</span><span>Rust</span><span>Docker</span>
+                </div>
+            </a>
+            <a href="https://github.com/CodeAauDeshBachau/AI-Mini-Project" target="_blank" class="repo-card">
+                <div class="repo-watermark">08</div>
+                <div class="repo-header">
+                    <h3>Flow</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">A grid-based crowd simulation that models pedestrians moving through obstacles with A* pathfinding.</p>
+                <div class="repo-tags">
+                    <span>Python</span><span>PyGame</span><span>Algorithms</span>
+                </div>
+            </a>
+            <a href="https://github.com/aShishir0/MemoryPalace" target="_blank" class="repo-card">
+                <div class="repo-watermark">09</div>
+                <div class="repo-header">
+                    <h3>MemoryPalace</h3>
+                    <i class="fa-brands fa-github repo-icon"></i>
+                </div>
+                <p class="repo-desc">Memory Palace is an immersive 3D spatial learning application that transforms your study materials into an interactive virtual memory palace. </p>
+                <div class="repo-tags">
+                    <span>JavaScript</span><span>Three.js</span><span>CSS</span>
+                </div>
+            </a>
+            <div class="terminal-overflow-log">
+                <a href="https://github.com/SID4288?tab=repositories" target="_blank" class="repo-card utility-graveyard-card">
+                    <div class="repo-watermark">++</div>
+                    <div class="repo-header">
+                        <h3>~/the-graveyard</h3>
+                        <i class="fa-solid fa-dumpster repo-icon"></i>
+                    </div>
+                    <p class="repo-desc">Where 10+ undocumented prototypes, abandoned multi-threading benchmarks, and structural code refactors go to rest. Proceed with extreme caution.</p>
+                    <div class="repo-tags">
+                        <span>Git Stash</span><span>Untracked</span><span>Error: 404</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="content-section reveal">
+        <div class="section-header">
+            <h2 class="section-title">Research</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="research-timeline">
+            <div class="research-card">
+                <span class="research-status"><i class="fa-solid fa-spinner fa-spin"></i> ACTIVE RESEARCH • 2026</span>
+                <h3 class="research-title">Spatio-Temporal Flood Prediction</h3>
+                <p class="repo-desc">Investigating graph neural sequence mechanisms to map historical geospatial flood extents against live cloud-penetrating arrays dynamically.</p>
+            </div>
+            <div class="research-card">
+                <span class="research-status"><i class="fa-solid fa-spinner fa-spin"></i> UNDER REVIEW • 2026</span>
+                <h3 class="research-title">Deep Learning Based Flood Detection Using Sentinel-1 SAR Imagery</h3>
+                <p class="repo-desc">Developing deep radar segmentation pipelines engineered to identify precise water-body expansions under heavy cloud covers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="spotlight" class="content-section reveal">
+        <div class="section-header">
+            <h2 class="section-title">Spotlight</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="spotlight-card">
+            <div class="spotlight-badge">
+                <i class="fa-solid fa-trophy"></i> 1st Place Winner
+            </div>
+            <h3 class="spotlight-title">KU Hackathon (AR/VR Track)</h3>
+            <p class="spotlight-desc">Engineered a comprehensive spatial localized audio mapping tool built within Unity to assist visually impaired navigators across unfamiliar coordinates through active proximity sound beacons.</p>
+            <div class="repo-tags" style="margin-top: 0.5rem;">
+                <span>Unity</span><span>C#</span><span>Spatial Audio</span><span>VR Development</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect" class="content-section reveal">
+        <div class="section-header">
+            <h2 class="section-title">Connect</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="connect-dashboard">
+            <div class="terminal-form">
+                <div class="terminal-form-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot" style="background:#ff5f56; opacity:1;"></div>
+                        <div class="terminal-dot" style="background:#ffbd2e; opacity:1;"></div>
+                        <div class="terminal-dot" style="background:#27c93f; opacity:1;"></div>
+                    </div>
+                    <div class="terminal-form-title">guest@devlog: ~/message_service</div>
+                </div>
+                
+                <form class="form-body" action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+                    <div class="form-group">
+                        <label class="form-label"><i class="fa-solid fa-user"></i> source_identity :</label>
+                        <input type="text" name="name" class="terminal-input" placeholder="your name or organization" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fa-solid fa-envelope"></i> return_path :</label>
+                        <input type="email" name="email" class="terminal-input" placeholder="your_email@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fa-solid fa-code"></i> payload_buffer :</label>
+                        <textarea name="message" class="terminal-input" placeholder="Type your secure transmission text here..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i> transmit_packet()
+                    </button>
+                </form>
+            </div>
+
+            <div class="networking-panel">
+                <div class="github-stats-row">
+                    <div class="gh-stat-box">
+                        <i class="fa-brands fa-github"></i>
+                        <div class="gh-info">
+                            <h4>Public Repos</h4>
+                            <div class="gh-num" id="api-repos">--</div>
+                        </div>
+                    </div>
+                    <div class="gh-stat-box">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="gh-info">
+                            <h4>Followers</h4>
+                            <div class="gh-num" id="api-followers">--</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="network-status-box">
+                    <div class="status-pulse"></div>
+                    <span>System Status: Online & routing requests</span>
+                </div>
+
+                <div class="interactive-links-list">
+                    <a href="https://github.com/SID4288" target="_blank" class="social-link-card">
+                        <div class="link-left">
+                            <i class="fa-brands fa-github"></i>
+                            <span>github.com/SID4288</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/siddhanta-adhikari-773931182/" target="_blank" class="social-link-card">
+                        <div class="link-left">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span>linkedin.com/in/siddhanta-adhikari</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
+                    </a>
+                    <a href="mailto:siddhanta2adhikari@gmail.com" class="social-link-card">
+                        <div class="link-left">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>siddhanta2adhikari@gmail.com</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>Siddhanta Adhikari</span> • Kathmandu University • Nepal</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
