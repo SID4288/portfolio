@@ -156,15 +156,26 @@ body {
 
 /* --- REPOSITORIES GRID --- */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-.repo-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.65rem; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(10px); display: flex; flex-direction: column; text-decoration: none; }
+.repo-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border); border-radius: 6px; padding: 1.65rem; position: relative; overflow: hidden; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, background 0.4s, box-shadow 0.4s; 
+    backdrop-filter: blur(10px); display: flex; flex-direction: column; text-decoration: none; 
+}
 .repo-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-.repo-card:hover { transform: translateY(-4px); border-color: var(--border-heavy); background: var(--window-bg); }
+.repo-card:hover { 
+    transform: translateY(-5px);
+    border-color: var(--accent-secondary); 
+    background: var(--window-bg);
+    box-shadow: 0 12px 35px -10px rgba(6, 182, 212, 0.22), 0 0 15px -3px rgba(6, 182, 212, 0.1);
+}
 .repo-card:hover::before { transform: scaleX(1); }
 .repo-watermark { position: absolute; bottom: -8px; right: 8px; font-family: var(--font-mono); font-size: 3.75rem; font-weight: 800; color: var(--text-main); opacity: 0.02; pointer-events: none; }
 .repo-card:hover .repo-watermark { opacity: 0.04; }
 .repo-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem; }
 .repo-header h3 { font-family: var(--font-sans); font-size: 1.15rem; color: var(--text-main); font-weight: 600; }
-.repo-icon { font-size: 1rem; color: var(--text-muted); }
+.repo-icon { font-size: 1rem; color: var(--text-muted); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s, text-shadow 0.3s; }
+.repo-card:hover .repo-icon { transform: scale(1.22); color: var(--accent-secondary); text-shadow: 0 0 8px rgba(6, 182, 212, 0.6); }
 .repo-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.75rem; flex-grow: 1; }
 .repo-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .repo-tags span { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.15rem 0.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-muted); }
@@ -172,8 +183,14 @@ body {
 /* Utility Graveyard Card */
 .utility-graveyard-card { border: 1px dashed rgba(239, 68, 68, 0.3) !important; background: rgba(20, 10, 10, 0.4) !important; }
 .utility-graveyard-card::before { background: linear-gradient(90deg, #ef4444, #f59e0b) !important; }
+.utility-graveyard-card:hover { 
+    transform: translateY(-5px);
+    border-color: #ef4444 !important;
+    box-shadow: 0 12px 35px -10px rgba(239, 68, 68, 0.25), 0 0 15px -3px rgba(239, 68, 68, 0.1) !important; 
+}
 .utility-graveyard-card:hover h3 { color: #ef4444 !important; animation: text-twitch 0.2s infinite; }
 .utility-graveyard-card .repo-icon { color: #ef4444; }
+.utility-graveyard-card:hover .repo-icon { color: #ef4444 !important; text-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
 
 /* --- RESEARCH TIMELINE --- */
 .research-timeline { border-left: 1px solid var(--border-heavy); padding-left: 1.75rem; margin-left: 0.5rem; display: flex; flex-direction: column; gap: 2.75rem; }

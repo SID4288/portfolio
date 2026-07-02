@@ -295,4 +295,43 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 4000);
         });
     }
+
+    // =================================================================
+    // H. SMOOTH SCROLLING FOR NAV LINKS
+    // =================================================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            let targetPosition = 0;
+
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+                const headerOffset = 54;
+                targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerOffset;
+            }
+
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            const duration = 800;
+            let start = null;
+
+            window.requestAnimationFrame(function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const percent = Math.min(progress / duration, 1);
+                
+                const ease = percent < 0.5 
+                    ? 4 * percent * percent * percent 
+                    : 1 - Math.pow(-2 * percent + 2, 3) / 2;
+                    
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                }
+            });
+        });
+    });
 });
