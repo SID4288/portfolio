@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { ArrowUpRight, ChevronDown, Circle, ExternalLink, Github, Mail, MapPin, MoveUpRight, Radio, Sparkles, Download } from "lucide-react";
 
 /**
@@ -15,24 +15,24 @@ type Project = {
   href: string;
   featured?: boolean;
   evidence: string;
+  image?: string;
 };
 
 const projects: Project[] = [
-  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/SID4288", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION" },
-  { number: "02", title: "SFaceX", description: "Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.", tags: ["OpenCV", "TensorFlow", "C++"], href: "https://github.com/SID4288", evidence: "CONSTRAINT / ANTI-SPOOFING" },
-  { number: "03", title: "StyleMe", description: "Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.", tags: ["MediaPipe", "Python", "React"], href: "https://github.com/DikshitBhatta/StyleMe", evidence: "INPUT / LIVE BODY LANDMARKS" },
-  { number: "04", title: "CookeryKaa", description: "Full-stack culinary curation application serving optimized parameter matching across large recipe schemas.", tags: ["Django", "PostgreSQL", "JavaScript"], href: "https://github.com/DikshitBhatta/CookeryKaa-Project", evidence: "STACK / DJANGO + POSTGRESQL" },
-  { number: "05", title: "Cadence", description: "Developer operations metrics console tracking performance patterns, live container logs, and repository speeds.", tags: ["Jupyter", "Deep Learning", "Data"], href: "https://github.com/SID4288/Cadence", evidence: "SIGNAL / REPO PERFORMANCE" },
-  { number: "06", title: "Zero Trust Sandbox", description: "Isolated runtime micro-kernel cluster built to observe, profile, and safely isolate arbitrary script executions.", tags: ["Python", "Docker", "Linux"], href: "https://github.com/SID4288/zero-trust-agent-sandbox", evidence: "BOUNDARY / ISOLATED EXECUTION" },
-  { number: "07", title: "Aanubadh", description: "Translation tool built for the KU Information and Language Processing Research Lab Hackathon.", tags: ["JavaScript", "Rust", "Docker"], href: "https://github.com/BipulLamsal/Aanubadh", evidence: "LAB / LANGUAGE ACCESS" },
-  { number: "08", title: "Flow", description: "Grid-based crowd simulation modelling pedestrians moving through obstacles with A* pathfinding.", tags: ["Python", "PyGame", "Algorithms"], href: "https://github.com/CodeAauDeshBachau/AI-Mini-Project", evidence: "MODEL / A* PATHFINDING" },
-  { number: "09", title: "MemoryPalace", description: "Immersive 3D spatial learning application that transforms study materials into an interactive virtual memory palace.", tags: ["JavaScript", "Three.js", "CSS"], href: "https://github.com/aShishir0/MemoryPalace", evidence: "SPACE / 3D MEMORY SYSTEM" },
+  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/SID4288", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION", image: "/images/aquila.png" },
+  { number: "02", title: "SFaceX", description: "Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.", tags: ["OpenCV", "TensorFlow", "C++"], href: "https://github.com/SID4288", evidence: "CONSTRAINT / ANTI-SPOOFING", image: "/images/sfacex.png" },
+  { number: "03", title: "StyleMe", description: "Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.", tags: ["MediaPipe", "Python", "React"], href: "https://github.com/DikshitBhatta/StyleMe", evidence: "INPUT / LIVE BODY LANDMARKS", image: "/images/styleme.png" },
+  { number: "04", title: "CookeryKaa", description: "Full-stack culinary curation application serving optimized parameter matching across large recipe schemas.", tags: ["Django", "PostgreSQL", "JavaScript"], href: "https://github.com/DikshitBhatta/CookeryKaa-Project", evidence: "STACK / DJANGO + POSTGRESQL", image: "/images/cookerykaa.png" },
+  { number: "05", title: "Cadence", description: "Developer operations metrics console tracking performance patterns, live container logs, and repository speeds.", tags: ["Jupyter", "Deep Learning", "Data"], href: "https://github.com/SID4288/Cadence", evidence: "SIGNAL / REPO PERFORMANCE",image: "/images/cadence.png"  },
+  { number: "06", title: "Zero Trust Sandbox", description: "Isolated runtime micro-kernel cluster built to observe, profile, and safely isolate arbitrary script executions.", tags: ["Python", "Docker", "Linux"], href: "https://github.com/SID4288/zero-trust-agent-sandbox", evidence: "BOUNDARY / ISOLATED EXECUTION", image: "/images/zero-trust.png" },
+  { number: "07", title: "Aanubadh", description: "Translation tool built for the KU Information and Language Processing Research Lab Hackathon.", tags: ["JavaScript", "Rust", "Docker"], href: "https://github.com/BipulLamsal/Aanubadh", evidence: "LAB / LANGUAGE ACCESS", image: "/images/aanubadh.png" },
+  { number: "08", title: "Flow", description: "Grid-based crowd simulation modelling pedestrians moving through obstacles with A* pathfinding.", tags: ["Python", "PyGame", "Algorithms"], href: "https://github.com/CodeAauDeshBachau/AI-Mini-Project", evidence: "MODEL / A* PATHFINDING", image: "/images/flow.png" },
+  { number: "09", title: "MemoryPalace", description: "Immersive 3D spatial learning application that transforms study materials into an interactive virtual memory palace.", tags: ["JavaScript", "Three.js", "CSS"], href: "https://github.com/aShishir0/MemoryPalace", evidence: "SPACE / 3D MEMORY SYSTEM", image: "/images/memory-palace.png" },
 ];
 
 const research = [
-  { status: "ACTIVE RESEARCH · 2026", title: "Spatio-Temporal Flood Prediction", text: "Investigating graph neural sequence mechanisms to map historical geospatial flood extents against live cloud-penetrating arrays dynamically." },
-  { status: "KU INFORMATION & NLP LAB", title: "Language, place, and access", text: "Exploring practical language tooling for Nepali and regional contexts, with an emphasis on systems that make technical knowledge easier to reach." },
-  { status: "FIELD NOTE · ONGOING", title: "Human-safe machine learning", text: "Interested in the boundary between model performance and dependable product behavior: observability, evaluation, and systems that fail legibly." },
+  { status: "ACTIVE RESEARCH • 2026", title: "Spatio-Temporal Flood Prediction", text: "Investigating graph neural sequence mechanisms to map historical geospatial flood extents against live cloud-penetrating arrays dynamically." },
+  { status: "UNDER REVIEW • 2026", title: "Deep Learning Based Flood Detection Using Sentinel-1 SAR Imagery", text: "Developing deep radar segmentation pipelines engineered to identify precise water-body expansions under heavy cloud covers." },
 ];
 
 const skills = ["Python", "PyTorch", "TensorFlow", "OpenCV", "Django", "React", "PostgreSQL", "Docker", "Google Earth Engine", "Git", "C++"];
@@ -59,15 +59,19 @@ function SectionLabel({ number, eyebrow, title }: { number: string; eyebrow: str
 }
 
 const certificates = [
-  { year: "2025", title: "Machine Learning Specialization", issuer: "DeepLearning.AI · Coursera", note: "Supervised learning, neural networks, and practical model evaluation." },
-  { year: "2024", title: "Python for Data Science", issuer: "IBM Skills Network", note: "Data preparation, analysis, visualization, and applied Python workflows." },
-  { year: "2024", title: "Cloud Computing Foundations", issuer: "Google Cloud", note: "Core cloud infrastructure, deployment patterns, and scalable systems." },
+  { year: "2024", title: "CS50's Introduction to AI with Python", issuer: "Harvard University", note: "", href: "https://certificates.cs50.io/0276cbf6-d6a4-4f6b-8c26-4663b2582987.pdf" },
+  { year: "2024", title: "AWS AI Practitioner Challenge", issuer: "Udacity", note: "", href: "https://www.udacity.com/certificate/e/0ccf2aae-39ab-11f1-ad7c-6bb623888a3e" },
+  { year: "2023", title: "Intro to Machine Learning", issuer: "Kaggle", note: "", href: "https://www.kaggle.com/learn/certification/siddhanta98/intro-to-machine-learning" },
+  { year: "2023", title: "Pandas", issuer: "Kaggle", note: "", href: "https://www.kaggle.com/learn/certification/siddhanta98/pandas" },
+  { year: "2023", title: "Scientific Computing with Python", issuer: "freeCodeCamp", note: "", href: "https://www.freecodecamp.org/certification/fcc-656888bb-fcf0-44ef-9340-bcee6d3434c4/python-v9" },
 ];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("top");
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
 
   const navItems = useMemo(() => [
     ["top", "Overview"], ["projects", "Selected work"], ["research", "Research"], ["certificates", "Certificates"], ["spotlight", "Profile"], ["connect", "Connect"],
@@ -77,6 +81,11 @@ export default function Home() {
     const onPointerMove = (event: PointerEvent) => {
       document.documentElement.style.setProperty("--mouse-x", `${event.clientX}px`);
       document.documentElement.style.setProperty("--mouse-y", `${event.clientY}px`);
+      
+      if (previewRef.current) {
+        previewRef.current.style.left = event.clientX + 'px';
+        previewRef.current.style.top = event.clientY + 'px';
+      }
     };
     window.addEventListener("pointermove", onPointerMove, { passive: true });
 
@@ -210,7 +219,7 @@ export default function Home() {
             </p>
             <div className="hero__actions mt-[2.25rem] observe-me reveal-up" style={{ animationDelay: '0.7s' }}>
               <button className="button button--orange" onClick={() => scrollTo("projects")}>Inspect the work <MoveUpRight size={16} /></button>
-              <a className="button button--quiet" href="mailto:siddhanta.adhikari@example.com"><Mail size={15} /> Ping me</a>
+              <a className="button button--quiet" href="mailto:siddhanta2adhikari@gmail.com"><Mail size={15} /> Ping me</a>
               <a className="button button--quiet" href="/Siddhanta_Adhikari_CV.pdf" download="Siddhanta_Adhikari_CV.pdf"><Download size={15} /> Resume</a>
             </div>
           </div>
@@ -238,23 +247,57 @@ export default function Home() {
           <SectionLabel number="01" eyebrow="ARCHIVE / BUILDS" title="Selected work" />
           <div className="section-intro observe-me reveal-up"><p>Projects that sit at the intersection of perception, computation, and a strong bias toward making things tangible.</p><a href="https://github.com/SID4288?tab=repositories" target="_blank" rel="noreferrer">View repository index <ArrowUpRight size={15} /></a></div>
           <div className="projects-grid">
-            {projects.map((project, i) => <a data-cursor="view" className={`observe-me reveal-up ${project.featured ? "project-card project-card--featured" : "project-card"}`} style={{ animationDelay: `${i * 0.1}s` }} href={project.href} target="_blank" rel="noreferrer" key={project.title}>
-              <span className="project-card__number">{project.number}</span><span className="project-card__stamp">SIGNAL RECORD</span><div className="project-card__icon"><Github size={17} /></div>
-              <h3>{project.title}</h3><p>{project.description}</p><span className="project-card__evidence">{project.evidence}</span><div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><span className="card-arrow"><ExternalLink size={15} /></span>
-            </a>)}
+            {projects.map((project, i) => (
+              <a 
+                data-cursor="view" 
+                className={`observe-me reveal-up ${project.featured ? "project-card project-card--featured" : "project-card"}`} 
+                style={{ animationDelay: `${i * 0.1}s` }} 
+                href={project.href} 
+                target="_blank" 
+                rel="noreferrer" 
+                key={project.title}
+                onMouseEnter={() => {
+                  if (project.image) setHoveredImage(project.image);
+                }}
+                onMouseLeave={() => setHoveredImage(null)}
+              >
+                <span className="project-card__number">{project.number}</span>
+                <span className="project-card__stamp">SIGNAL RECORD</span>
+                <div className="project-card__icon"><Github size={17} /></div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <span className="project-card__evidence">{project.evidence}</span>
+                <div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                <span className="card-arrow"><ExternalLink size={15} /></span>
+              </a>
+            ))}
             <a data-cursor="view" className="project-card project-card--graveyard observe-me reveal-up" style={{ animationDelay: `${projects.length * 0.1}s` }} href="https://github.com/SID4288?tab=repositories" target="_blank" rel="noreferrer"><span className="project-card__number">++</span><span className="project-card__stamp">UNRESOLVED</span><div className="project-card__icon">✳</div><h3>~/the-graveyard</h3><p>Where abandoned prototypes, multi-threading benchmarks, and structural refactors go to rest.</p><div className="tag-row"><span>Git stash</span><span>Untracked</span><span>Error: 404</span></div></a>
           </div>
         </section>
 
         <section id="research" className="research-section">
+          <div className="research-deco-circle" style={{ width: '400px', height: '400px', top: '-100px', right: '-150px' }} aria-hidden="true" />
+          <div className="research-deco-circle" style={{ width: '600px', height: '600px', bottom: '-200px', left: '-200px', opacity: 0.5 }} aria-hidden="true" />
           <div className="research-section__image observe-me reveal-up"><img src="/images/research.webp" alt="Orbital scan inspired research diagram" /><div className="research-section__image-label">OBSERVATION / 02</div></div>
-          <div className="container-narrow research-section__content"><SectionLabel number="02" eyebrow="FIELD NOTES / INQUIRY" title="Research" /><div className="research-list">{research.map((item, i) => <article className="research-item observe-me reveal-up" style={{ animationDelay: `${i * 0.1}s` }} key={item.title}><span>{item.status}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div>
+          <div className="container-narrow research-section__content">
+            <SectionLabel number="02" eyebrow="FIELD NOTES / INQUIRY" title="Research" />
+            <div className="research-list">
+              {research.map((item, i) => (
+                <article className="research-item observe-me reveal-up" style={{ animationDelay: `${i * 0.1}s` }} key={item.title}>
+                  <div className="research-deco-line" aria-hidden="true" />
+                  <span>{item.status}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section id="certificates" className="certificate-section">
           <div className="container-narrow">
             <SectionLabel number="03" eyebrow="ARCHIVE / CREDENTIALS" title="Certificates" />
-            <div className="certificate-grid">{certificates.map((certificate, i) => <article className="certificate-card observe-me reveal-up" style={{ animationDelay: `${i * 0.1}s` }} key={certificate.title}><span className="certificate-year">{certificate.year}</span><div><h3>{certificate.title}</h3><p>{certificate.issuer}</p><small>{certificate.note}</small></div><ArrowUpRight size={17} /></article>)}</div>
+            <div className="certificate-grid">{certificates.map((certificate, i) => <a href={certificate.href} target="_blank" rel="noreferrer" className="certificate-card observe-me reveal-up" style={{ animationDelay: `${i * 0.1}s`, display: 'grid' }} key={certificate.title}><span className="certificate-year">{certificate.year}</span><div><h3>{certificate.title}</h3><p>{certificate.issuer}</p>{certificate.note && <small>{certificate.note}</small>}</div><ArrowUpRight size={17} /></a>)}</div>
           </div>
         </section>
 
@@ -263,10 +306,32 @@ export default function Home() {
           <div className="spotlight-grid"><div className="spotlight-statement observe-me reveal-up"><Sparkles size={19} /><p>“The interesting part isn’t making a model work once. It’s designing the surrounding system so that it keeps making sense.”</p></div><div className="spotlight-copy observe-me reveal-up" style={{ animationDelay: '0.2s' }}><p>My work moves between research and implementation: from geospatial forecasting and computer vision to secure authentication and developer tooling. I care about the connective tissue — the interfaces, data flows, and decisions that turn a technical idea into a dependable experience.</p><div className="profile-facts"><div><span>Based in</span><strong><MapPin size={14} /> Kathmandu, Nepal</strong></div><div><span>Studying</span><strong>Computer Engineering</strong></div><div><span>Now exploring</span><strong>Graph neural systems</strong></div></div></div></div>
         </section>
 
-        <section id="connect" className="connect-section"><div className="connect-section__inner container-narrow"><div className="observe-me reveal-up"><span className="kicker">05 / OPEN CHANNEL</span><h2>Have a problem<br /><em>worth solving?</em></h2></div><div className="connect-section__copy observe-me reveal-up" style={{ animationDelay: '0.2s' }}><p>Whether you’re working on a research question, an intelligent product, or a system that needs a second pair of eyes — I’d like to hear about it.</p><a className="button button--orange" href="mailto:siddhanta.adhikari@example.com">Start a conversation <ArrowUpRight size={16} /></a></div></div></section>
+        <section id="connect" className="connect-section">
+          <div className="connect-section__inner container-narrow">
+            <div className="observe-me reveal-up">
+              <span className="kicker">05 / OPEN CHANNEL</span>
+              <h2>Have a problem<br /><em>worth solving?</em></h2>
+            </div>
+            <div className="connect-section__copy observe-me reveal-up" style={{ animationDelay: '0.2s' }}>
+              <p>Whether you’re working on a research question, an intelligent product, or a system that needs a second pair of eyes — I’d like to hear about it.</p>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+                <a className="button button--orange" href="mailto:siddhanta2adhikari@gmail.com">Send an email <ArrowUpRight size={16} /></a>
+                <a className="button button--quiet" style={{ border: '1px solid var(--hairline)' }} href="https://linkedin.com/in/siddhanta-adhikari-773931182/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={16} /></a>
+                <a className="button button--quiet" style={{ border: '1px solid var(--hairline)' }} href="https://github.com/SID4288" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16} /></a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="footer container-wide"><span>© 2026 Siddhanta Adhikari</span><span>Built between research notes and late-night commits.</span><a href="#top" onClick={(e) => { e.preventDefault(); scrollTo("top"); }}>Back to top ↑</a></footer>
+      
+      <div 
+        ref={previewRef} 
+        className={`project-preview ${hoveredImage ? 'active' : ''}`}
+      >
+        {hoveredImage && <img src={hoveredImage} alt="Project Preview" />}
+      </div>
     </div>
   );
 }
