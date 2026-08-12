@@ -19,15 +19,15 @@ type Project = {
 };
 
 const projects: Project[] = [
-  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/SID4288", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION", image: "/images/aquila.png" },
-  { number: "02", title: "SFaceX", description: "Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.", tags: ["OpenCV", "TensorFlow", "C++"], href: "https://github.com/SID4288", evidence: "CONSTRAINT / ANTI-SPOOFING", image: "/images/sfacex.png" },
-  { number: "03", title: "StyleMe", description: "Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.", tags: ["MediaPipe", "Python", "React"], href: "https://github.com/DikshitBhatta/StyleMe", evidence: "INPUT / LIVE BODY LANDMARKS", image: "/images/styleme.png" },
-  { number: "04", title: "CookeryKaa", description: "Full-stack culinary curation application serving optimized parameter matching across large recipe schemas.", tags: ["Django", "PostgreSQL", "JavaScript"], href: "https://github.com/DikshitBhatta/CookeryKaa-Project", evidence: "STACK / DJANGO + POSTGRESQL", image: "/images/cookerykaa.png" },
-  { number: "05", title: "Cadence", description: "Developer operations metrics console tracking performance patterns, live container logs, and repository speeds.", tags: ["Jupyter", "Deep Learning", "Data"], href: "https://github.com/SID4288/Cadence", evidence: "SIGNAL / REPO PERFORMANCE",image: "/images/cadence.png"  },
-  { number: "06", title: "Zero Trust Sandbox", description: "Isolated runtime micro-kernel cluster built to observe, profile, and safely isolate arbitrary script executions.", tags: ["Python", "Docker", "Linux"], href: "https://github.com/SID4288/zero-trust-agent-sandbox", evidence: "BOUNDARY / ISOLATED EXECUTION", image: "/images/zero-trust.png" },
-  { number: "07", title: "Aanubadh", description: "Translation tool built for the KU Information and Language Processing Research Lab Hackathon.", tags: ["JavaScript", "Rust", "Docker"], href: "https://github.com/BipulLamsal/Aanubadh", evidence: "LAB / LANGUAGE ACCESS", image: "/images/aanubadh.png" },
-  { number: "08", title: "Flow", description: "Grid-based crowd simulation modelling pedestrians moving through obstacles with A* pathfinding.", tags: ["Python", "PyGame", "Algorithms"], href: "https://github.com/CodeAauDeshBachau/AI-Mini-Project", evidence: "MODEL / A* PATHFINDING", image: "/images/flow.png" },
-  { number: "09", title: "MemoryPalace", description: "Immersive 3D spatial learning application that transforms study materials into an interactive virtual memory palace.", tags: ["JavaScript", "Three.js", "CSS"], href: "https://github.com/aShishir0/MemoryPalace", evidence: "SPACE / 3D MEMORY SYSTEM", image: "/images/memory-palace.png" },
+  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/SID4288", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION", image: "/images/aquila.webp" },
+  { number: "02", title: "SFaceX", description: "Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.", tags: ["OpenCV", "TensorFlow", "C++"], href: "https://github.com/SID4288", evidence: "CONSTRAINT / ANTI-SPOOFING", image: "/images/sfacex.webp" },
+  { number: "03", title: "StyleMe", description: "Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.", tags: ["MediaPipe", "Python", "React"], href: "https://github.com/DikshitBhatta/StyleMe", evidence: "INPUT / LIVE BODY LANDMARKS", image: "/images/styleme.webp" },
+  { number: "04", title: "CookeryKaa", description: "Full-stack culinary curation application serving optimized parameter matching across large recipe schemas.", tags: ["Django", "PostgreSQL", "JavaScript"], href: "https://github.com/DikshitBhatta/CookeryKaa-Project", evidence: "STACK / DJANGO + POSTGRESQL", image: "/images/cookerykaa.webp" },
+  { number: "05", title: "Cadence", description: "Developer operations metrics console tracking performance patterns, live container logs, and repository speeds.", tags: ["Jupyter", "Deep Learning", "Data"], href: "https://github.com/SID4288/Cadence", evidence: "SIGNAL / REPO PERFORMANCE",image: "/images/cadence.webp"  },
+  { number: "06", title: "Zero Trust Sandbox", description: "Isolated runtime micro-kernel cluster built to observe, profile, and safely isolate arbitrary script executions.", tags: ["Python", "Docker", "Linux"], href: "https://github.com/SID4288/zero-trust-agent-sandbox", evidence: "BOUNDARY / ISOLATED EXECUTION", image: "/images/zero-trust.webp" },
+  { number: "07", title: "Aanubadh", description: "Translation tool built for the KU Information and Language Processing Research Lab Hackathon.", tags: ["JavaScript", "Rust", "Docker"], href: "https://github.com/BipulLamsal/Aanubadh", evidence: "LAB / LANGUAGE ACCESS", image: "/images/aanubadh.webp" },
+  { number: "08", title: "Flow", description: "Grid-based crowd simulation modelling pedestrians moving through obstacles with A* pathfinding.", tags: ["Python", "PyGame", "Algorithms"], href: "https://github.com/CodeAauDeshBachau/AI-Mini-Project", evidence: "MODEL / A* PATHFINDING", image: "/images/flow.webp" },
+  { number: "09", title: "MemoryPalace", description: "Immersive 3D spatial learning application that transforms study materials into an interactive virtual memory palace.", tags: ["JavaScript", "Three.js", "CSS"], href: "https://github.com/aShishir0/MemoryPalace", evidence: "SPACE / 3D MEMORY SYSTEM", image: "/images/memory-palace.webp" },
 ];
 
 const research = [
@@ -78,6 +78,14 @@ export default function Home() {
   ], []);
 
   useEffect(() => {
+    // Preload project preview images to enable instant loading on hover
+    projects.forEach((project) => {
+      if (project.image) {
+        const img = new Image();
+        img.src = project.image;
+      }
+    });
+
     const onPointerMove = (event: PointerEvent) => {
       document.documentElement.style.setProperty("--mouse-x", `${event.clientX}px`);
       document.documentElement.style.setProperty("--mouse-y", `${event.clientY}px`);
@@ -150,7 +158,7 @@ export default function Home() {
 
       <header className="topbar">
         <button className="brand-lockup" onClick={() => scrollTo("top")} aria-label="Back to top">
-          <img src="/images/logo.png" alt="" />
+          <img src="/images/logo.webp" alt="" />
           <span>/sid/</span>
         </button>
         <div className="topbar__status"><span className="status-dot" /> Available for thoughtful builds</div>
