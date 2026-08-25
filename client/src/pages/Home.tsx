@@ -19,7 +19,7 @@ type Project = {
 };
 
 const projects: Project[] = [
-  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/SID4288", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION", image: "/images/aquila.webp" },
+  { number: "01", title: "Aquila", description: "SAR flood detection pipeline leveraging deep satellite radar imagery for automated geospatial hazard tracking.", tags: ["Python", "Earth Engine", "PyTorch"], href: "https://github.com/CodeAauDeshBachau/Aquila/tree/siddhanta", featured: true, evidence: "METHOD / SAR + DEEP SEGMENTATION", image: "/images/aquila.webp" },
   { number: "02", title: "SFaceX", description: "Biometric face verification engine paired with continuous convolutional neural anti-spoofing protection filters.", tags: ["OpenCV", "TensorFlow", "C++"], href: "https://github.com/SID4288", evidence: "CONSTRAINT / ANTI-SPOOFING", image: "/images/sfacex.webp" },
   { number: "03", title: "StyleMe", description: "Real-time modular body tracking runtime providing automatic virtual apparel sizing and framework configurations.", tags: ["MediaPipe", "Python", "React"], href: "https://github.com/DikshitBhatta/StyleMe", evidence: "INPUT / LIVE BODY LANDMARKS", image: "/images/styleme.webp" },
   { number: "04", title: "CookeryKaa", description: "Full-stack culinary curation application serving optimized parameter matching across large recipe schemas.", tags: ["Django", "PostgreSQL", "JavaScript"], href: "https://github.com/DikshitBhatta/CookeryKaa-Project", evidence: "STACK / DJANGO + POSTGRESQL", image: "/images/cookerykaa.webp" },
