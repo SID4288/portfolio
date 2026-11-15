@@ -4,21 +4,21 @@ import { projects } from '../data/projects';
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative pt-24 pb-32 lg:pt-32 lg:pb-40 bg-white">
+    <section id="projects" className="relative pt-20 pb-32 lg:pt-32 lg:pb-40 bg-white">
       <div className="section-wrapper">
-        <div className="text-center mb-16 lg:mb-20">
+        <div className="section-head">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-serif text-[2.25rem] leading-tight text-navy font-normal mb-6 lg:text-[3rem]"
+            className="section-title"
           >
             Selected work
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="body text-muted-blue font-normal max-w-[500px] mx-auto"
+            className="text-[17px] text-muted-blue font-normal max-w-[520px] mx-auto"
           >
             Open source projects spanning computer vision, remote sensing, and intelligent systems.
           </motion.p>
@@ -28,14 +28,14 @@ export default function Projects() {
           {projects.map((project) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileHover={{ y: -6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="group relative p-8 rounded-2xl border border-navy/12 bg-white hover:border-navy/25 transition-colors duration-300"
+              className="project-card"
             >
               <div className="mb-6">
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-royal/10 text-royal text-xs font-medium mb-3">
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-royal/10 text-royal text-[11px] font-medium mb-4">
                   {project.tagline}
                 </span>
                 <h3 className="font-serif text-xl leading-tight text-navy font-normal group-hover:text-royal transition-colors">
@@ -43,22 +43,22 @@ export default function Projects() {
                 </h3>
               </div>
 
-              <p className="text-sm text-text-body font-normal leading-relaxed mb-6">
+              <p className="text-sm text-text-body font-normal leading-relaxed mb-7">
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded border border-navy/12 bg-white text-navy text-[11px] font-medium"
+                    className="skill-chip"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-navy/12">
+              <div className="flex items-center justify-between pt-7 border-t border-navy/12">
                 <a
                   href={project.github}
                   target="_blank"

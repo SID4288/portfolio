@@ -10,7 +10,6 @@
   body {
     @apply bg-soft-white text-navy antialiased selection:bg-royal selection:text-white;
   }
-  /* Remove focus outline for mouse users, keep for keyboard */
   :focus-visible {
     @apply outline outline-2 outline-royal rounded-sm;
     outline-offset: 3px;
@@ -18,6 +17,14 @@
 }
 
 @layer components {
+  /* --- Navigation --- */
+  .nav {
+    @apply fixed inset-x-0 top-0 z-50 transition-all duration-300;
+  }
+  .nav.scrolled {
+    @apply bg-white/85 backdrop-blur-[16px] border-b border-[rgba(7,26,67,0.12)];
+  }
+
   .nav-link {
     @apply relative text-navy font-medium text-sm transition-colors duration-200;
   }
@@ -35,11 +42,12 @@
     content: '';
   }
 
+  /* --- Buttons --- */
   .btn-pill-primary {
-    @apply inline-flex items-center gap-2 h-14 px-8 rounded-full bg-navy text-white font-semibold text-sm shadow-[0_12px_32px_rgba(7,26,67,0.25)] transition-all duration-200 ease-out;
+    @apply inline-flex items-center gap-2 h-14 px-8 rounded-full bg-navy text-white font-semibold text-sm shadow-[0_12px_32px_rgba(7,26,67,0.20)] transition-all duration-200 ease-out;
   }
   .btn-pill-primary:hover {
-    @apply -translate-y-[2px];
+    @apply -translate-y-[2px] shadow-[0_20px_40px_rgba(7,26,67,0.25)];
   }
   .btn-pill-primary::after {
     @apply absolute left-8 right-8 bottom-[-2px] h-[0px] bg-crimson transition-all duration-200 ease-out origin-bottom;
@@ -57,18 +65,38 @@
   }
 
   .role-pill {
-    @apply inline-flex items-center gap-2 h-[36px] px-4 rounded-full bg-white/70 backdrop-blur-[16px] border-[rgba(7,26,67,0.12)] text-navy text-xs font-normal leading-none;
+    @apply inline-flex items-center gap-2 h-[38px] px-4 rounded-full bg-white/80 backdrop-blur-sm border-[rgba(7,26,67,0.10)] text-navy text-xs font-normal leading-none;
   }
   .role-dot {
     @apply w-[8px] h-[8px] rounded-full bg-crimson;
   }
 
+  /* --- Sections --- */
   .section-wrapper {
     @apply relative px-6 mx-auto max-w-[1280px];
   }
-}
+  .section-head {
+    @apply text-center mb-16 lg:mb-24;
+  }
+  .section-title {
+    @apply font-serif text-[2rem] leading-tight text-navy font-normal mb-6 lg:text-[2.75rem];
+  }
 
-@layer utilities {
+  /* --- Project cards --- */
+  .project-card {
+    @apply p-8 rounded-2xl border-[rgba(7,26,67,0.12)] bg-white transition-all duration-300;
+  }
+  .project-card:hover {
+    @apply -translate-y-[4px] shadow-[0_24px_48px_rgba(7,26,67,0.10)];
+    border-color: rgba(7,26,67,0.25);
+  }
+
+  /* --- Skill chips --- */
+  .skill-chip {
+    @apply px-3 py-1.5 rounded border-[rgba(7,26,67,0.12)] bg-white text-navy text-sm font-medium transition-colors hover:bg-navy/5;
+  }
+
+  /* --- Utility text --- */
   .text-balance {
     text-wrap: balance;
   }
@@ -78,9 +106,20 @@
 }
 
 .devanagari-underline {
-  @apply w-[48px] h-[2px] bg-crimson;
+  @apply w-[48px] h-[1.5px] bg-crimson;
 }
 
 .glass {
   @apply bg-white/70 backdrop-blur-[16px] border-[rgba(7,26,67,0.12)];
+}
+
+/* Parallax will-change for GPU acceleration */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* Scroll dot animation */
+@keyframes scrollDot {
+  0% { top: 20%; opacity: 1; }
+  100% { top: 60%; opacity: 0; }
 }

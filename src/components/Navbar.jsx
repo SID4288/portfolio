@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
@@ -13,16 +13,29 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
+  const navRef = useRef(null);
 
+  // Scroll effect: toggle class directly on DOM node (no React re-render)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const el = navRef.current;
+    if (!el) return;
+
+    const throttled = () => {
+      if (window.scrollY > 10) {
+        el.classList.add('scrolled');
+      } else {
+        el.classList.remove('scrolled');
+      }
+    };
+
+    throttled();
+    window.addEventListener('scroll', throttled, { passive: true });
+    return () => window.removeEventListener('scroll', throttled);
   }, []);
 
+  // Active link via IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,7 +45,7 @@ export default function Navbar() {
           }
         });
       },
-      { rootMargin: '-20% 0% -60% 0%', threshold: 0.1 },
+      { rootMargin: '-25% 0% -60% 0%', threshold: 0.1 },
     );
 
     links.forEach((link) => {
@@ -52,11 +65,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/70 backdrop-blur-[16px] -webkit-backdrop-blur-[16px] border-b border-navy/12'
-          : 'bg-transparent'
-      }`}
+      ref={navRef}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
       aria-label="Main navigation"
     >
       <div className="flex items-center justify-between px-6 py-4 lg:px-12 lg:h-[88px]">
@@ -112,7 +122,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="lg:hidden absolute inset-x-0 top-full bg-white/80 backdrop-blur-[20px] -webkit-backdrop-blur-[20px] border-b border-navy/12 z-50 flex flex-col"
+            className="lg:hidden absolute inset-x-0 top-full bg-white/85 backdrop-blur-[20px] border-b border-navy/12 z-50 flex flex-col"
           >
             <div className="px-6 py-6">
               <div className="flex items-center justify-between mb-8">

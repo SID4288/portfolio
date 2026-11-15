@@ -9,7 +9,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // 'success' | 'error'
+  const [status, setStatus] = useState(null);
 
   const validate = () => {
     const e = {};
@@ -23,13 +23,12 @@ export default function Contact() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
     setStatus(null);
     try {
-      // TODO: Replace FORM_ENDPOINT with your real form handler.
       await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -45,25 +44,22 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative pt-24 pb-32 lg:pt-32 lg:pb-40 bg-white">
+    <section id="contact" className="relative pt-20 pb-32 lg:pt-32 lg:pb-40 bg-white">
       <div className="section-wrapper">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left: intro + contact links */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-8"
             >
-              <h2 className="font-serif text-[2.25rem] leading-tight text-navy font-normal lg:text-[3rem]">
-                Get in touch
-              </h2>
-              <p className="body text-text-body font-normal leading-relaxed">
+              <h2 className="section-title text-left">Get in touch</h2>
+              <p className="text-[16px] leading-relaxed text-text-body font-normal">
                 Open to conversation on research and engineering opportunities. Reach out by email or
                 connect below.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <a
                   href="mailto:siddhanta2adhikari@gmail.com"
                   className="flex items-center gap-3 text-navy font-medium text-sm hover:text-royal transition-colors"
@@ -93,10 +89,9 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Right: form */}
           <div className="lg:col-span-7">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="p-8 rounded-2xl border border-navy/12 bg-white"
@@ -107,24 +102,24 @@ export default function Contact() {
                     <Send size={20} strokeWidth={2} />
                   </div>
                   <h3 className="font-semibold text-navy mb-2">Message sent.</h3>
-                  <p className="text-sm text-muted-blue">Thank you — I'll get back to you soon.</p>
+                  <p className="text-sm text-muted-blue">
+                    Thank you — I'll get back to you soon.
+                  </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid md:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-navy">Name</label>
                       <input
                         type="text"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={`w-full px-4 py-3 rounded border ${errors.name ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
+                        className={`w-full px-4 py-3.5 rounded border ${errors.name ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
                         placeholder="Your name"
                         aria-invalid={!!errors.name}
                       />
-                      {errors.name && (
-                        <p className="text-xs text-red-600">{errors.name}</p>
-                      )}
+                      {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-navy">Email</label>
@@ -132,13 +127,11 @@ export default function Contact() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={`w-full px-4 py-3 rounded border ${errors.email ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
+                        className={`w-full px-4 py-3.5 rounded border ${errors.email ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
                         placeholder="you@example.com"
                         aria-invalid={!!errors.email}
                       />
-                      {errors.email && (
-                        <p className="text-xs text-red-600">{errors.email}</p>
-                      )}
+                      {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -147,7 +140,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
-                      className={`w-full px-4 py-3 rounded border ${errors.message ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
+                      className={`w-full px-4 py-3.5 rounded border ${errors.message ? 'border-red-500' : 'border-navy/12'} focus:border-royal focus:ring-1 focus:ring-royal text-sm text-navy`}
                       placeholder="What would you like to discuss?"
                       aria-invalid={!!errors.message}
                     />
