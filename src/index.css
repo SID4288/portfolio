@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+  body {
+    @apply bg-soft-white text-navy antialiased selection:bg-royal selection:text-white;
+  }
+  /* Remove focus outline for mouse users, keep for keyboard */
+  :focus-visible {
+    @apply outline outline-2 outline-royal rounded-sm;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-navy font-medium text-sm transition-colors duration-200;
+  }
+  .nav-link::after {
+    @apply absolute left-0 right-0 bottom-[-10px] h-[2px] bg-navy w-full origin-bottom scale-y-0 transition-transform duration-300 ease-out;
+    content: '';
+    transform-origin: bottom;
+  }
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    @apply scale-y-100;
+  }
+  .nav-link.active::before {
+    @apply absolute -bottom-[18px] left-1/2 -translate-x-1/2 w-[6px] h-[6px] bg-crimson rounded-full;
+    content: '';
+  }
+
+  .btn-pill-primary {
+    @apply inline-flex items-center gap-2 h-14 px-8 rounded-full bg-navy text-white font-semibold text-sm shadow-[0_12px_32px_rgba(7,26,67,0.25)] transition-all duration-200 ease-out;
+  }
+  .btn-pill-primary:hover {
+    @apply -translate-y-[2px];
+  }
+  .btn-pill-primary::after {
+    @apply absolute left-8 right-8 bottom-[-2px] h-[0px] bg-crimson transition-all duration-200 ease-out origin-bottom;
+    content: '';
+  }
+  .btn-pill-primary:hover::after {
+    @apply h-[2px];
+  }
+
+  .btn-pill-secondary {
+    @apply inline-flex items-center gap-2 h-14 px-8 rounded-full border border-navy bg-transparent text-navy font-medium text-sm transition-all duration-200 ease-out;
+  }
+  .btn-pill-secondary:hover {
+    @apply border-navy bg-white/90;
+  }
+
+  .role-pill {
+    @apply inline-flex items-center gap-2 h-[36px] px-4 rounded-full bg-white/70 backdrop-blur-[16px] border-[rgba(7,26,67,0.12)] text-navy text-xs font-normal leading-none;
+  }
+  .role-dot {
+    @apply w-[8px] h-[8px] rounded-full bg-crimson;
+  }
+
+  .section-wrapper {
+    @apply relative px-6 mx-auto max-w-[1280px];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+.devanagari-underline {
+  @apply w-[48px] h-[2px] bg-crimson;
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-[16px] border-[rgba(7,26,67,0.12)];
+}
