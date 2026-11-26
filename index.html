@@ -106,6 +106,16 @@ const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelecto
 const EASE='cubic-bezier(.15,1,.3,1)',IO='cubic-bezier(.65,0,.35,1)'; /* anime defaults: 500ms, (.15,1,.3,1) */
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const header=$('#header'),clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const brand=$('#header a.logo');
+if(brand){
+ const mark=document.createElement('img');
+ mark.src='assets/logo.png';mark.alt='';mark.setAttribute('aria-hidden','true');
+ mark.style.width='1.8rem';mark.style.height='1.8rem';mark.style.flex='0 0 auto';
+ brand.prepend(mark);
+ brand.style.display='flex';brand.style.alignItems='center';brand.style.gap='.5rem';brand.style.whiteSpace='nowrap';
+}
+const favicon=document.createElement('link');
+favicon.rel='icon';favicon.type='image/svg+xml';favicon.href='assets/logo.png';document.head.append(favicon);
 const setH=()=>document.documentElement.style.setProperty('--header-height',header.offsetHeight+'px');setH();addEventListener('resize',setH);
 
 /* ---- procedural satellite imagery (stand-in for photos) ---- */
@@ -185,15 +195,17 @@ if(!reduce){lenis=makeSmooth();document.documentElement.classList.add('lenis','l
 const isMobile=()=>matchMedia('(width < 58.75rem)').matches;
 const scrollToEl=(el,off=0)=>lenis?lenis.scrollTo(el,{offset:off,duration:1.6,easing:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}):window.scrollTo({top:el.getBoundingClientRect().top+scrollY+off,behavior:'smooth'});
 
-/* ---- hero: tile reveal (grid 10x10, from index 90, inCubic, 450ms) ---- */
-const tr=$('.tile-reveal'),tiles=$$('.tile',tr||document);
+/* ---- hero: tile reveal (grid 8x8, from index 56, inCubic, 450ms) ---- */
+const GRID=8,tr=$('.tile-reveal');
+if(tr){tr.style.gridTemplateColumns='repeat(8,1fr)';$$('.tile',tr).slice(64).forEach(t=>t.remove())}
+const tiles=$$('.tile',tr||document);
 function tileReveal(){
- const maxD=Math.hypot(9,9),oy=9,ox=0;
+ const maxD=Math.hypot(GRID-1,GRID-1),oy=GRID-1,ox=0;
  tiles.forEach((t,i)=>{
-  const x=i%10,y=Math.floor(i/10),dist=Math.hypot(x-ox,y-oy),delay=100+Math.pow(dist/maxD,3)*maxD*90;
+  t.style.setProperty('backdrop-filter','none');t.style.setProperty('-webkit-backdrop-filter','none');
+  const x=i%GRID,y=Math.floor(i/GRID),dist=Math.hypot(x-ox,y-oy),delay=100+Math.pow(dist/maxD,3)*maxD*90;
   const face=$('.tile-face',t);
   face&&face.animate([{clipPath:'inset(0% 0% 0% 0%)'},{clipPath:'inset(0% 0% 100% 0%)'}],{duration:450,delay,easing:EASE,fill:'forwards'});
-  t.animate([{backdropFilter:'blur(10px)',webkitBackdropFilter:'blur(10px)'},{backdropFilter:'blur(0px)',webkitBackdropFilter:'blur(0px)'}],{duration:350,delay:delay+45,easing:EASE,fill:'forwards'});
  });
  setTimeout(()=>tr&&(tr.style.display='none'),100+maxD*90+900);
 }
